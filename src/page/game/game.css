@@ -1,0 +1,155 @@
+.gamewrap {
+    height: 100%;
+    background: url(../../assets/image/youxi_di.jpg) center no-repeat;
+    background-size: 100%;
+}
+
+.game-img {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.15rem;
+    margin-top: 0.4rem;
+}
+
+.game-img li {
+    width: 5.16rem;
+    height: 2.94rem;
+    margin: 0 0.15rem 0.15rem 0;
+    position: relative;
+}
+
+.game-img li:nth-child(2n) {
+    margin-right: 0;
+}
+
+.game-img li img {
+    width: 100%;
+    height: 100%;
+}
+
+.my-tab .vux-tab {
+    background: rgba(255, 255, 255, .1)
+}
+
+.my-tab .vux-tab .vux-tab-item {
+    color: #333;
+    position: relative;
+}
+
+.game-name {
+    position: absolute;
+    top: 50%;
+    right: 0.2rem;
+    transform: translateY(-50%);
+}
+
+.game-name span {
+    display: block;
+    margin: 0.2rem 0;
+    text-align: center;
+    font-size: 0.36rem;
+    color: #fff;
+}
+
+.game-name i {
+    display: block;
+    width: 0.6rem;
+    height: 0.6rem;
+    background: url(../index/img/zhuan.png) center no-repeat;
+    background-size: 100%;
+    margin: auto;
+}
+
+.gamewrap .vux-swiper {
+    height: auto;
+}
+
+.my-tab .vux-tab-container {
+    height: 60px;
+}
+
+.my-tab .vux-tab .vux-tab-item h2 {
+    font-weight: normal;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 99;
+    color: #000000;
+    line-height: 30px;
+}
+
+.my-tab .vux-tab .vux-tab-item.on h2 {
+    color: #dc700c;
+    font-size: 0.42rem;
+}
+
+.my-tab .vux-tab .vux-tab-item.live {
+    width: 0.86rem;
+    height: 0.86rem;
+    background: url(./img/shixun2.png) top center no-repeat;
+    background-size: 40%;
+    padding-top: 1.6rem;
+}
+
+.my-tab .vux-tab .vux-tab-item.live.on {
+    background: url(./img/shixun1.png) top center no-repeat;
+    background-size: 40%;
+}
+
+.my-tab .vux-tab .vux-tab-item.egame {
+    width: 0.86rem;
+    height: 0.86rem;
+    background: url(./img/dianzi1.png) top center no-repeat;
+    background-size: 40%;
+    padding-top: 1.6rem;
+}
+
+.my-tab .vux-tab .vux-tab-item.egame.on {
+    background: url(./img/dianzi2.png) top center no-repeat;
+    background-size: 40%;
+}
+
+.my-tab .vux-tab {
+    height: 60px;
+}
+
+.my-tab .vux-tab .vux-tab-item.esport {
+    background: url(./img/diangjing1.png) top center no-repeat;
+    width: 0.86rem;
+    height: 0.86rem;
+    background-size: 40%;
+    padding-top: 1.6rem;
+}
+
+.my-tab .vux-tab .vux-tab-item.esport.on {
+    background: url(./img/dianjing2.png) top center no-repeat;
+    background-size: 40%;
+}
+
+.my-tab .vux-tab .vux-tab-item.sport {
+    background: url(./img/tiyu1.png) top center no-repeat;
+    background-size: 40%;
+    width: 0.86rem;
+    height: 0.86rem;
+    padding-top: 1.6rem;
+}
+
+.my-tab .vux-tab .vux-tab-item.sport.on {
+    background: url(./img/tiyu2.png) top center no-repeat;
+    background-size: 40%;
+}
+
+.my-tab .vux-tab .vux-tab-item.lottery {
+    background: url(./img/caipiao1.png) top center no-repeat;
+    background-size: 40%;
+    width: 0.86rem;
+    height: 0.86rem;
+    padding-top: 1.6rem;
+}
+
+.my-tab .vux-tab .vux-tab-item.lottery.on {
+    background: url(./img/caipiao2.png) top center no-repeat;
+    background-size: 40%;
+}

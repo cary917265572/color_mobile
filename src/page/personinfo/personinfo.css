@@ -1,0 +1,47 @@
+.wrap {
+    height: 100%;
+    background: #f2f2f2;
+}
+
+.personinfo ul li {
+    height: 1rem;
+    background: #fff;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.4rem;
+    margin-top: 0.2rem;
+}
+
+.personinfo ul li label {
+    width: 2.3rem;
+    font-size: 0.48rem;
+    color: #666;
+}
+
+.personinfo .mid {
+    width: 6.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.38rem;
+    color: #333;
+}
+
+.personinfo .mid a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.38rem;
+    color: #333;
+}
+
+.personinfo ul li:first-child .mid a {
+    color: #e43434;
+}
+
+.personinfo .mid .info-lev {
+    color: #e6a23c;
+}
