@@ -1,8 +1,8 @@
 <template>
     <div class="forgetwrap">
-         <Head title="重置密码"></Head>
+         <Head title="忘记密码" type="backhd"></Head>
          <ul>
-             <li><x-input title="新密码" type="password" placeholder="请输入新密码" v-model="newpwd1"></x-input></li>
+             <li><x-input title="新的密码" type="password" placeholder="请输入新密码" v-model="newpwd1"></x-input></li>
              <li><x-input title="确认密码" type="password" placeholder="请二次输入新密码" v-model="newpwd2"></x-input></li>
          </ul>
          <div class="h40"></div>
@@ -56,7 +56,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .forgetwrap{
         height:100%;
         background:#f2f2f2;
@@ -70,5 +70,8 @@ export default {
         background:#e6a23c;
         color:#fff;
         border-radius:4px;
+    }
+    .pay-go span{
+      background: @color;
     }
 </style>

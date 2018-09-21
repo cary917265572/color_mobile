@@ -1,11 +1,13 @@
 <template>
-    <div class="wrap">
-        <Head :title="title" ></Head>
+    <div class="countwrap">
+        <Head type="backhd" title="优惠活动"></Head>
         <!-- Tab -->
-        <tab :line-width=2 active-color='#dc700c' v-model="tabIndex">
-            <tab-item class="vux-center" @on-item-click="changeActiveList(tabIndex)">全部</tab-item>
-            <tab-item class="vux-center" @on-item-click="changeActiveList(index)"  v-for="(item, index) in activehead" :key="index">{{item.title}}</tab-item>
-        </tab>
+        <div class="count-tab">
+          <tab :line-width=2 active-color='@tab-bar-active-color' v-model="tabIndex">
+              <tab-item class="vux-center" @on-item-click="changeActiveList(tabIndex)">全部</tab-item>
+              <tab-item class="vux-center" @on-item-click="changeActiveList(index)"  v-for="(item, index) in activehead" :key="index">{{item.title}}</tab-item>
+          </tab>
+        </div>
         <div class="tab-swiper">
             <ul class="dis-img">
                 <li v-for="(item2,index2) in endlist" :key="index2" @click="goDiscountDetail(item2)">
@@ -32,7 +34,6 @@ export default {
     };
   },
   mounted() {
-    this.$vux.loading.show();
     this.getActiveHead();
     this.getActiveList();
   },
@@ -53,7 +54,6 @@ export default {
       this.$http
         .post("/public/active_list.do", { is_list: "1", is_info: "1" })
         .then(e => {
-          this.$vux.loading.hide();
           if (e.data.Status == 200) {
             this.activelist = e.data.Data.active_list;
             this.endlist = this.activelist;
@@ -108,11 +108,16 @@ export default {
   }
 };
 </script>
+<style lang="less">
+.count-tab .scrollable.vux-tab{
+  background: #fff;
+}
+</style>
 
-<style scoped>
-.wrap {
+<style lang="less" scoped>
+.countwrap {
   background: #f0e9df;
-  padding-top: 1.3rem;
+  padding-top:1.8rem;
 }
 .dis-img li {
   margin-bottom: 0.24rem;
@@ -129,17 +134,17 @@ export default {
 .dis-tit span {
   float: right;
   font-size: 0.32rem;
-  color: #e6a23c;
+  color: @count-more-color;
   margin-right: 0.2rem;
 }
-.wrap .icon-right {
+.countwrap .icon-right {
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
 }
 .vux-x-icon {
-  fill: #e6a23c;
+  fill: @count-icon-color;
 }
 .my-header {
   position: fixed;

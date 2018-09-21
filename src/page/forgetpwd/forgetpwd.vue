@@ -1,6 +1,6 @@
 <template>
     <div class="forgetwrap">
-         <Head :title="title"></Head>
+         <Head :title="title" type="backhd"></Head>
          <ul>
              <li><x-input title="用户名" placeholder="请输入用户名" v-model="forgetuser"></x-input></li>
              <li>
@@ -97,8 +97,8 @@ export default {
 };
 </script>
 
-<style scoped>
-.forgetwrap{
+<style scoped lang="less">
+    .forgetwrap{
         height:100%;
         background:#f2f2f2;
     }
@@ -108,8 +108,11 @@ export default {
     }
     .getcode{
         padding:5px 10px;
-        background:#e6a23c;
+        background:@code-bg;
         color:#fff;
         border-radius:4px;
+    }
+    .pay-go span{
+      background: @color;
     }
 </style>

@@ -1,7 +1,14 @@
 <template>
     <div class="recordtable-wrap">
-        <Head :title="title"></Head>
-        <x-table :cell-bordered="false" style="background:#ffffff;">
+        <Head :title="title" type="backhd"></Head>
+        <!-- 什么都木有查到的情况下 -->
+        <div v-if="recordlist.length==0">
+             <div class="recordbox">
+                  <img src="../../../static/img/record_blank.png" width="120" alt="">
+                  <p>什么都木有查到哦</p>
+             </div>
+        </div>
+        <x-table :cell-bordered="false" style="background:#ffffff;" v-else>
             <thead>
                 <tr style="background-color:#f0e9df;">
                     <th style="width:25%">日期</th>
@@ -52,9 +59,6 @@ export default {
         .then(e => {
           if (e.data.Status == 200) {
             this.recordlist = e.data.Data.result;
-            this.$vux.toast.text(e.data.Msg);
-          } else {
-            this.$vux.toast.text(e.data.Msg);
           }
         });
     }

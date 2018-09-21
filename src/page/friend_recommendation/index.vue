@@ -1,25 +1,25 @@
 <!-- 推荐好友 -->
 <template>
   <div>
-
-    <Head title="推荐好友"></Head>
+    <Head title="推荐好友" type="backhd"></Head>
     <div class="f-serch">
       <group class="f-tjcode">推荐码：
-        <span style="color:#e43434">{{code}}</span>
+        <span class="f-codenum">{{code}}</span>
         <sub></sub>
       </group>
-      <group title="(请您在或有注册时协助好友填写推荐码)">
+      <group title="(请您在或有注册时协助好友填写推荐码)" class="f-input">
         <datetime v-model="startTime" title="开始时间："></datetime>
       </group>
-      <group>
+      <group class="f-input">
         <datetime v-model="endTime" title="结束时间："></datetime>
       </group>
-      <group>
+      <group class="f-input">
         <x-input title="用户名：" v-model="username"></x-input>
       </group>
-      <group class="serch-btn">
-        <x-button @click.native="search">搜索</x-button>
-      </group>
+      <div class="h40"></div>
+      <div class="pay-go">
+          <span @click="search">搜索</span>
+      </div>
     </div>
   </div>
 </template>
@@ -70,6 +70,6 @@ export default {
     }
 };
 </script>
-<style>
-@import url(./index.css);
+<style lang="less">
+@import url(./index.less);
 </style>

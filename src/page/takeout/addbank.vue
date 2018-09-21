@@ -1,6 +1,6 @@
 <template>
     <div class="wrap">
-         <Head :title="title"></Head>
+         <Head :title="title" type="backhd"></Head>
          <div class="bankbox">
              <ul>
                  <li><x-input title="持卡人" :placeholder="this.username" :disabled="true"></x-input></li>
@@ -11,7 +11,8 @@
                  </li>
                  <li><x-input title="开户行" placeholder="请输入开户网点" v-model="bankinfo.bankplace" :required="true"></x-input></li>
              </ul>
-             <div class="bankok">
+             <div class="h40"></div>
+             <div class="pay-go">
                  <span @click="addCard">提交绑定</span>
              </div>
          </div>
@@ -35,7 +36,7 @@ import Head from "@/components/Head.vue";
 export default {
   data() {
     return {
-      title: "添加银行卡",
+      title: "添加绑定银行卡",
       banktit: "请选择银行卡",
       username: "",
       bankinfo: {

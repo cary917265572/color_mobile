@@ -2,7 +2,7 @@
 <template>
     <div class="vip">
 
-        <Head title="等级规则" v-if="show==true"></Head>
+        <Head title="等级规则" v-if="show==true" type="backhd"></Head>
         <div class="vip-banner"><img src="./img/vip-bg.jpg" /></div>
         <ul class="vip-list">
             <li>

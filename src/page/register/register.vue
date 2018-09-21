@@ -1,47 +1,48 @@
 <template>
-   <div class="wrap reg">
-        <div class="reg-back">
-             <a href="javascript:;" @click="goBack">&lt;返回</a>
-        </div>
-        <div class="reg-logo">
-             <img src="../../assets/image/logo.png" alt="">
-        </div>
+   <div class="regwrap">
+        <Head type="backhd" title="用户注册"></Head>
         <div class="reg-form">
              <ul>
                  <li>
-                     <x-input title="推荐码" label-width="2.2rem" placeholder="没有可不填" v-model="form.tjcode"></x-input>
+                     <x-input class="x" title="推荐码" label-width="2.2rem" placeholder="没有可不填" v-model="form.tjcode"></x-input>
                  </li>
                  <li>
-                     <x-input ref="username" title="账号" label-width="2.2rem" :required="true" placeholder="6-10字符，字母开头" :is-type="username" v-model="form.username" @on-blur="blurUser"></x-input>
+                     <x-input class="x" ref="username" title="账号" label-width="2.2rem" :required="true" placeholder="6-10字符，字母开头" :is-type="username" v-model="form.username" @on-blur="blurUser"></x-input>
                  </li>
                  <li>
-                     <x-input ref="pwd" title="密码" label-width="2.2rem" type="password" :required="true" placeholder="请输入密码" :is-type="pwd" v-model="form.pwd"></x-input>
+                     <x-input class="x" ref="pwd" title="密码" label-width="2.2rem" type="password" :required="true" placeholder="请输入密码" :is-type="pwd" v-model="form.pwd"></x-input>
                  </li>
                  <li>
-                     <x-input ref="pwd1" title="确认密码" label-width="2.2rem" type="password" :required="true" placeholder="请确认密码" :is-type="pwd1" v-model="form.pwd1"></x-input>
+                     <x-input class="x" ref="pwd1" title="确认密码" label-width="2.2rem" type="password" :required="true" placeholder="请确认密码" :is-type="pwd1" v-model="form.pwd1"></x-input>
                  </li>
                  <li>
-                     <x-input ref="email" title="邮箱" label-width="2.2rem" :required="true" placeholder="请输入您的邮箱" :is-type="email" v-model="form.email"></x-input>
+                     <x-input class="x" ref="email" title="邮箱" label-width="2.2rem" :required="true" placeholder="请输入您的邮箱" :is-type="email" v-model="form.email"></x-input>
                  </li>
                  <li>
-                     <x-input ref="phone" title="手机号码" label-width="2.2rem" :required="true" placeholder="请输入您的手机号码" :is-type="phone" v-model="form.phone"></x-input>
+                     <x-input class="x" ref="phone" title="手机号码" label-width="2.2rem" :required="true" placeholder="请输入您的手机号码" :is-type="phone" v-model="form.phone"></x-input>
                  </li>
                  <li>
-                     <x-input ref="code" title="验证码" label-width="2.2rem" :show-clear="false" placeholder="请输入验证码" :is-type="code" v-model="form.code">
+                     <x-input class="x" ref="code" title="验证码" label-width="2.2rem" :show-clear="false" placeholder="请输入验证码" :is-type="code" v-model="form.code">
                          <img slot="right" :src="api" @click="changeCode">
                      </x-input>
                  </li>
-                 <li @click="goReg">注册</li>
+                 <li>
+                     <div class="reg-rule" v-model="rule" :class="{on:rule}" @click="changerule"><em></em>我已满合法年龄，且同意各项开户条约。</div>
+                 </li>
+                 <li @click="goReg">
+                     <div class="pay-go">
+                         <span>确认送出</span>
+                     </div>
+                 </li>
              </ul>
         </div>
-        <div class="reg-rule" v-model="rule" :class="{on:rule}" @click="changerule"><em></em>已满18岁，且同意本站<span>用户协议</span></div>
    </div>
 </template>
 
 <script>
+import Head from '@/components/Head'
 export default {
   name: '',
-  props:['type'],
   data () {
     return {
         form:{
@@ -98,6 +99,9 @@ export default {
   },
   mounted() {
         this.api = "/public/captcha.do?" + Math.random();
+  },
+  components:{
+      Head
   },
   methods: {
     // 返回
@@ -202,7 +206,7 @@ export default {
                 if (data.data.Status === 200) {
                     var info = data.data.Data.user_info;
                     window.sessionStorage.vns_info = JSON.stringify(info);
-                    that.$router.push("index");
+                    that.$router.push("/");
                 }
             });
         }
@@ -214,3 +218,4 @@ export default {
 <style scoped>
    @import './register.css';
 </style>
+

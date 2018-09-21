@@ -1,6 +1,6 @@
 <template>
-    <div class="wrap">
-         <Head :title="title" v-if="!$route.query.sessionid"></Head>
+    <div class="diswrap">
+         <Head title="优惠详情" v-if="!$route.query.sessionid" type="backhd"></Head>
          <div class="content" v-for="(item,key) in list" :key="key" v-if="$route.query.id === item.id" v-html="item.content"></div>
     </div>
 </template>
@@ -10,7 +10,6 @@ import Head from "@/components/Head";
 export default {
   data() {
     return {
-      title: "优惠详情",
       list: ""
     };
   },
@@ -39,7 +38,17 @@ export default {
 </script>
 
 <style scoped>
+.diswrap{
+  padding-top:1.8rem;
+}
 .content {
-  padding: 10px;
+  padding: 10px 10px 60px 10px;
+}
+.my-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9;
 }
 </style>

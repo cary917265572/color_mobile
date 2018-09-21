@@ -1,10 +1,10 @@
 <template>
     <div class="wrap">
-         <Head :title="title"></Head>
+         <Head :title="title" type="backhd"></Head>
          <ul>
-             <li><x-input title="旧密码" type="password" placeholder="请输入旧密码" v-model="pwd0" required></x-input></li>
-             <li><x-input title="新密码" type="password" placeholder="请输入新密码" v-model="pwd1" :min="8" :max="16" required></x-input></li>
-             <li><x-input title="再次输入" type="password" placeholder="确认新密码" v-model="pwd2" required></x-input></li>
+             <li><x-input title="原始密码" type="password" placeholder="请输入旧密码" v-model="pwd0" required></x-input></li>
+             <li><x-input title="新的密码" type="password" placeholder="请输入新密码" v-model="pwd1" :min="8" :max="16" required></x-input></li>
+             <li><x-input title="确认密码" type="password" placeholder="确认新密码" v-model="pwd2" required></x-input></li>
          </ul>
          <div class="h40"></div>
          <div class="pay-go" @click="updatePwd">
@@ -69,4 +69,5 @@
         background:#fff;
         margin-top:0.2rem;
     }
-</style>`
+    
+</style>

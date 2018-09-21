@@ -12,7 +12,7 @@ module.exports = {
         proxyTable: {
             '/api': {
                 // 我要请求的地址
-                target: 'https://www.vs908.com/',
+                target: 'https://www.vs908.com',
                 //是否跨域 
                 changeOrigin: true,
                 // 重写地址 

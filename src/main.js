@@ -3,12 +3,14 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 import '@/assets/js/flex'
 import '@/assets/css/common.css'
 import Qs from 'qs'
 import axios from 'axios'
 import VueAxios from 'vue-axios';
 import VueClipboard from 'vue-clipboard2'
+import animate from 'animate.css'
 import {
     XButton,
     XHeader,
@@ -38,7 +40,9 @@ import {
     PopupPicker,
     PopupRadio,
     Marquee,
-    MarqueeItem
+    MarqueeItem,
+    Cell,
+    XSwitch
 } from 'vux'
 Vue.component('x-button', XButton)
 Vue.component('x-table', XTable)
@@ -65,6 +69,8 @@ Vue.component('popup-radio', PopupRadio)
 Vue.directive('transfer-dom', TransferDom)
 Vue.component('marquee', Marquee)
 Vue.component('marquee-item', MarqueeItem)
+Vue.component('cell', Cell)
+Vue.component('x-switch', XSwitch)
 Vue.use(LoadingPlugin)
 Vue.use(ToastPlugin)
 Vue.component('datetime', Datetime)
@@ -75,29 +81,35 @@ Vue.component('x-table', XTable)
 Vue.use(VueClipboard);
 
 Vue.config.productionTip = false
-
+    // 接口配置
 window.WEB_API = process.env.NODE_ENV === 'production' ? '' : '/api';
 var axios_instance = axios.create({
-    baseURL: WEB_API || '',
-    transformRequest: [function(data) {
-        data = Qs.stringify(data);
-        return data;
-    }],
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-})
-
-// 接口数据返回后钩子
+        baseURL: WEB_API || '',
+        transformRequest: [function(data) {
+            data = Qs.stringify(data);
+            return data;
+        }],
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    })
+    // 接口数据请求前
+axios_instance.interceptors.request.use(request => {
+        Vue.$vux.loading.show();
+        return request;
+    })
+    // 接口数据返回后
 axios_instance.interceptors.response.use(response => {
+    Vue.$vux.loading.hide();
     if (response.data.Status === 600) {
-        sessionStorage.removeItem('vns_status');
-        router.go('/')
+        store.commit('DEL_USERINFO');
+        Vue.$vux.toast.text("登录超时", "middle");
+        router.push('/');
     }
     return response;
 })
 Vue.use(VueAxios, axios_instance)
-    // meta.role为true时，验证登录状态
+    // 全局钩子，登录拦截
 router.beforeEach((to, from, next) => {
-    if (!sessionStorage.getItem('vns_status') && to.meta.role) {
+    if (!sessionStorage.getItem('vns_info') && to.meta.role) {
         next({
             path: '/login',
             query: { redirect: to.fullPath }
@@ -108,14 +120,17 @@ router.beforeEach((to, from, next) => {
 })
 
 // 全局自定义公用方法
-Vue.prototype.$method = function() {
-
+Vue.prototype.$islogin = function() {
+    if (this.$store.state.user_info) {
+        this.$store.dispatch('showAllMessageGo');
+        this.$store.dispatch('showBrance');
+    }
 }
 
-/* eslint-disable no-new */
 new Vue({
     el: '#app',
     router,
+    store,
     components: { App },
     template: '<App/>'
 })

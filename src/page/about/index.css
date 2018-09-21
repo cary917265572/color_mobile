@@ -4,14 +4,15 @@
 
 .about-logo {
     margin: 0.75rem auto;
-    width: 2.52rem;
+    width: 50%;
     height: 1.62rem;
 }
 
 .about-p {
-    font-size: .36rem;
-    color: #b5b3b3;
-    text-align: center;
+    padding: 0 12%;
+    font-size: .2rem;
+    color: #666;
+    text-align: left;
     line-height: 1.5;
 }
 

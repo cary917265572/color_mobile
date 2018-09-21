@@ -1,8 +1,12 @@
 <!--  -->
 <template>
   <div class="f-table">
-      <Head title="推荐好友"></Head>
-      <x-table :cell-bordered="false" style="background:#ffffff;">
+      <Head title="推荐好友" type="backhd"></Head>
+      <div class="nothing" v-if="data.length<1">
+          <span>什么都木有哦</span>
+          <span>=￣ω￣=</span>
+      </div>
+      <x-table :cell-bordered="false" style="background:#ffffff;" v-else>
           <thead>
               <tr style="background-color:#f0e9df;">
                   <th style="width:33%">会员账号</th>
@@ -18,7 +22,6 @@
               </tr>
           </tbody>
       </x-table>
-      <p v-if="data.length<1">暂无数据</p>
   </div>
 </template>
 
@@ -64,5 +67,5 @@ export default {
 
 </script>
 <style scoped>
-@import url(./index.css);
+@import url(./index.less);
 </style>

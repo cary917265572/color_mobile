@@ -1,10 +1,8 @@
 <!-- 关于我们 -->
 <template>
     <div class="about">
-
-        <Head title="关于我们"></Head>
-        <div class="about-logo"><img src="./img/logo@2x.png" /></div>
-        <p class="about-p">澳门威尼斯人娱乐场是在菲律宾马卡提注册的合法博彩公<br/>司，由菲律宾政府卡格扬经济特区<br/>（First Cagayan leisure and Resort Corporation）授权和<br/>监管。</p>
+        <Head title="关于我们" type="backhd"></Head>
+        <div class="about-logo"><img src="../../../static/img/logo.png" /></div>
         <div class="about-item">
             <div class="about-left email">Email：</div>
             <div class="about-right">
@@ -37,9 +35,9 @@
 export default {
     data() {
         return {
-            email: "vns908cs@gmail.com",
-            qq: "878899282",
-            wechat:'vs908cs'
+            email: "SunCity@gmail.com",
+            qq: "88888888",
+            wechat:'wx888888'
         };
     },
 

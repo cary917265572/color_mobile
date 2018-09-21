@@ -1,6 +1,6 @@
 <template>
     <div class="noticewrap">
-        <Head :title="title" ></Head>
+        <Head :title="title" type="backhd"></Head>
         <ul>
             <li v-for="item in noticelist">
                 <h3>{{item.title}}</h3>
@@ -39,13 +39,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .noticewrap {
   background: #f0e9df;
-  padding-top:1.2rem;
+  padding-top:53px;
 }
 .noticewrap ul {
-    padding: 0.25rem;
+    padding: 0.4rem 0.25rem;
 }
 .noticewrap ul li{
     background: #fff;
@@ -57,7 +57,7 @@ export default {
 }
 .noticewrap ul li h3{
     font-size: 0.48rem;
-    color:#e6a23c;
+    color:@notic-color;
     font-weight: normal;
     margin-bottom:0.2rem;
 }

@@ -1,11 +1,10 @@
 <template>
     <div class="ptelcwrap">
-        <Head :title="title"></Head>
+        <Head :title="title" type="backhd"></Head>
         <ul class="pt-ul">
           <li v-for="item in gameList" @click="openGame(item)">
             <div class="imgbox"><img :src="url+item.img_url" alt=""></div>
             <h3>{{item.game_title}}</h3>
-            <span>开始游戏</span>
           </li>
         </ul>
     </div>
@@ -114,8 +113,8 @@ export default {
 </script>
 <style scoped>
 .ptelcwrap {
-  background: #f0e9df;
-  padding-top: 1.2rem;
+  background: #fff;
+  padding-top: 53px;
 }
 .pt-ul {
   padding: 0.2rem;

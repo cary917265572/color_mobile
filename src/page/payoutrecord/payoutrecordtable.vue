@@ -1,7 +1,15 @@
 <template>
     <div class="recordtable-wrap">
-        <Head :title="title"></Head>
-        <x-table :cell-bordered="false" style="background:#ffffff;">
+        <Head :title="title" type="backhd"></Head>
+        <!-- 什么都木有查到的情况下 -->
+        <div v-if="recordlist.length==0">
+             <div class="recordbox">
+                  <img src="../../../static/img/record_blank.png" width="120" alt="">
+                  <p>什么都木有查到哦</p>
+             </div>
+        </div>
+        <!-- 查到数据的情况 -->
+        <x-table :cell-bordered="false" style="background:#ffffff;" v-else>
             <thead>
                 <tr style="background-color:#f0e9df;">
                     <th style="width:25%">日期</th>
@@ -47,9 +55,6 @@ import Head from '@/components/Head'
                 }).then(e=>{
                     if(e.data.Status==200){
                         this.recordlist = e.data.Data.cash_list;
-                        this.$vux.toast.text(e.data.Msg);
-                    }else{
-                        this.$vux.toast.text(e.data.Msg);
                     }
                 })
             }
@@ -77,7 +82,7 @@ import Head from '@/components/Head'
 
 <style scoped>
 .recordtable-wrap{
-    padding-top:1.2rem;
+    padding-top:1.7rem;
 }
 .my-header {
   position: fixed;

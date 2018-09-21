@@ -1,16 +1,16 @@
 <template>
     <div class="delegate">
-        <Head :title="title" v-if="show==true"></Head>
+        <Head :title="title" v-if="show==true" type="backhd"></Head>
         <div class = "container">
-             <tab :line-width=2 active-color='#dc700c' v-model="a" class="normal">
+             <tab :line-width=2 active-color='@tab-bar-active-color' v-model="a" class="normal">
                 <tab-item>合作计划</tab-item>
                 <tab-item>常见问题</tab-item>
             </tab>
 
-            <div v-if="a===0">
+            <div class="p-20" v-if="a===0">
                 <div class="segment">
                     <h4>注册申请</h4>
-                    <p>1.请点击<span>[代理注册]</span>线上提出申请，填写正确的各项资料，邮箱，手机，名字。必须填写真实的，方便以后给您支付佣金。</p>
+                    <p>1.请点击<span>代理注册</span>线上提出申请，填写正确的各项资料，邮箱，手机，名字。必须填写真实的，方便以后给您支付佣金。</p>
                     <p>2.澳门威尼斯人娱乐场所会评估审核联盟申请信息，于1个工作日内由专员与您联系开通，并协助您注册推广链接。</p>
                 </div>
                 <div class="segment">
@@ -49,7 +49,7 @@
                     </table>
                 </div>
                 <div class="segment">
-                    <span>佣金计算方法：</span>
+                    <p><span>佣金计算方法：</span></p>
                     <p>代理佣金 = 纯利润X当月佣金比例</p>
                     <p>纯利润 = 平台输赢-下线会员总红利-平台费</p>
                     <p>平台费 = （平台输赢-下线会员总红利）X 10%</p>
@@ -77,7 +77,7 @@
                     <p>7.澳门威尼斯人保留对以上条款的最终解释权和决定权。"</p>
                 </div>
             </div>
-            <div v-if="a===1">
+            <div class="p-20" v-else>
                 <div class="segment">
                     <h4>什么是代理联盟？</h4>
                     <p>"我们采用最为多元、 先进、公正的系统，在众多博彩网站中，我们自豪能为会员提供最优惠的回馈、为代理商创造强劲的营利优势! 澳门威尼斯人娱乐场秉持商业联营、资源整合、利益共享的理念，与合作伙伴携手打造利多的荣景。 无论您拥有的是网络资源，或是丰富的人脉，都欢迎您来加入我们的行列，不须负担任何费用， 就可以开拓无上限的营收。澳门威尼斯人娱乐场娱乐绝对是您最聪明的选择!"</p>
@@ -128,11 +128,19 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+.my-header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+}
     .delegate{
         background-color: #000000;
         background-image: url('./img/daili_bg.png');
         background-size: 100%,20rem;
+        padding-top:1.8rem;
     }
     .container{
         width: 100%;
@@ -147,7 +155,7 @@ export default {
         padding-left: 0.2rem;
         margin-top: 0.4rem;
         font-size: 0.5rem;
-        color: #ffd954;
+        color: @dele-color;
     }
     p{
         padding-left: 0.2rem;
@@ -177,5 +185,8 @@ export default {
         font-size: 0.38rem;
         height: 1.2rem;
         text-align: center;
+    }
+    .p-20{
+        padding:0 0.2rem 0.2rem 0.2rem;
     }
 </style>

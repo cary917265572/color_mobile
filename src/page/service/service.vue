@@ -1,6 +1,6 @@
 <template>
     <div class="serwrap">
-        <Head title="客服"></Head>
+        <Head title="客服" type="backhd"></Head>
         <div class="service">
             <iframe src="https://kf1.learnsaas.com/chat/chatClient/chatbox.jsp?companyID=995953&configID=75016&jid=3866497063&s=1"></iframe>
         </div>

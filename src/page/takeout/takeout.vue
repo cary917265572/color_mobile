@@ -1,48 +1,33 @@
 <template>
     <div class="wrap">
-         <Head :title="title"></Head>
-         <div class="takeout-one">
-              <div class="takeout-one-box">
-                    <div class="takeout-total">
-                        <div class="takeout-one-icon"></div>
-                        <div class="takeout-one-text">
-                            <p>中心钱包</p>
-                            <p>￥<b>{{platform.balance}}</b></p>
-                        </div>
+        <Head :title="title" type="backhd"></Head>
+        <div class="takebox">
+            <!-- 未绑定银行的模块 -->
+            <div v-if = "unbindcard==true">
+                <div class="nocard">
+                <img src="../../../static/img/bank_card.png" alt="">
+                </div>
+                <div class="h40"></div>
+                <div class="pay-go" style="padding:0;">
+                    <span><router-link to="/addbank">添加银行卡</router-link></span>
+                </div>
+            </div>
+            <!-- 已绑定银行的模块 -->
+            <div v-if = "bindcard==true">
+                <div class="takelist">
+                    <label class="">选择提款银行卡</label>
+                    <div class="pay-base-item" @click="showBank">
+                        <span>请选择<em style="margin-left:15px;">{{banklabel}}</em></span>
+                        <x-icon type="ios-arrow-right" size="15"></x-icon>
                     </div>
-                    <div class="takeout-addbank"><router-link to="addbank">添加银行卡</router-link></div>
-                    <div class="takeout-refurbish" @click="refrash">刷新金额</div>
-              </div>
-         </div>
-         <div class="takeout-two">
-             <ul>
-                 <li v-for="item in platform.list">
-                     <label>{{item.title}}</label>
-                     <span>{{item.balance}}</span>
-                 </li>
-             </ul>
-         </div>
-         <!-- 未绑定银行的模块 -->
-         <div v-show = "unbindcard==true" class="pay-base-item" @click="firstbind">
-            <span><i class="pay-allbank-icon"></i>请先绑定银行卡</span>
-            <x-icon type="ios-arrow-right" size="15"></x-icon>
+                </div>
+                <div class="takelist pay-hand-two">
+                    <label class="">输入提款金额</label>
+                    <x-input ref="paymoney" v-model="moneyval" title="￥" :required="true" placeholder="请输入取款金额"></x-input>
+                </div>
+                <div class="pay-go"><span @click="outGo">确认并提交</span></div>
+            </div>
         </div>
-        <!-- 已绑定银行的模块 -->
-         <div v-show = "bindcard==true" class="pay-base-item" @click="showBank">
-            <span><i class="pay-allbank-icon"></i>请选择银行<em style="margin-left:15px;">{{banklabel}}</em></span>
-            <x-icon type="ios-arrow-right" size="15"></x-icon>
-        </div>
-        <div class="h20"></div>
-        <div class="pay-hand-two">
-            <div class="pay-hand-money">取款金额（元）</div>
-            <x-input ref="paymoney" v-model="moneyval" title="￥" :required="true" placeholder="请输入取款金额"></x-input>
-        </div>
-        <div class="h20"></div>
-        <div class="pay-hand-three">
-            <span :class="{'on':isok===index}" v-for="(item,index) in moneylist" @click="getMoney(item,index)">{{item}}</span>
-        </div>
-        <div class="h20"></div>
-        <div class="pay-go"><span @click="outGo">下一步</span></div>
         <!-- 银行卡的弹框 -->
         <div v-transfer-dom>
             <popup v-model="bankPop">
@@ -63,9 +48,9 @@ import Head from "@/components/Head.vue";
 export default {
   data() {
     return {
-      title: "取款",
+      title: "提款",
       platform:'',
-      moneyval:0,
+      moneyval:'',
       moneylist: [50, 100, 500, 1000, 1500],
       isok:'',
       bankPop:false,
@@ -84,10 +69,8 @@ export default {
   methods: {
     // 获取钱包以及各平台余额
     getPlatform(){
-       this.$vux.loading.show();
        let _username = JSON.parse(sessionStorage.vns_info).username;
        this.$http.post('/admin/plat_balance.do',{account: _username}).then(e=>{
-            this.$vux.loading.hide();
             if(e.data.Status==200){
                 this.platform = e.data.Data;
             }

@@ -92,7 +92,6 @@ img {
     /* ie8 */
     display: block;
     -ms-interpolation-mode: bicubic;
-    /*为了照顾ie图片缩放失真*/
 }
 
 
@@ -144,6 +143,7 @@ body {
     height: 100%;
     font: 12px/1.5 'Microsoft YaHei', '宋体', Tahoma, Arial, sans-serif;
     color: #555;
+    background: #f2f2f2;
 }
 
 #app {
@@ -178,7 +178,7 @@ strong {
 
 a {
     text-decoration: none;
-    color: #969696;
+    color: #333;
     font-family: 'Microsoft YaHei', Tahoma, Arial, sans-serif;
 }
 
@@ -226,7 +226,6 @@ input {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    /* -webkit-line-clamp: 2; */
     -webkit-box-orient: vertical;
 }
 
@@ -264,40 +263,65 @@ a:hover {
 }
 
 
-/* 公用图片按钮 */
-
-.inp-go {
-    height: 1rem;
-    line-height: 1rem;
-    text-align: center;
-    font-size: 0.42rem;
-    color: #fff;
-    background: url(../../assets/image/di_btn.png) center no-repeat;
-    border-radius: 5px;
-}
-
-
 /* 公用纯色按钮 */
 
 .pay-go {
-    padding: 0 0.4rem;
+    padding: 0 0.8rem;
 }
 
 .pay-go span {
     display: flex;
-    height: 1rem;
-    background: #e6a23c;
-    border-radius: 6px;
+    height: 1.3rem;
+    border-radius: 20px;
     font-size: 0.42rem;
     color: #fff;
     justify-content: center;
     align-items: center;
 }
 
-.wrap .vux-tab-container,
-.messagewrap .vux-tab-container,
-.t_plat .vux-tab-container {
-    position: fixed;
-    top: 40px;
-    z-index: 9;
+.pay-go span a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-align: center;
+    line-height: 1.3rem;
+    color: #fff;
+}
+
+
+/* 记录什么都木有的样式 */
+
+.recordbox {
+    text-align: center;
+}
+
+.recordbox img {
+    display: inline-block;
+    width: 30%;
+    margin: 20px 0 20px 20px;
+}
+
+.recordbox p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #bbb;
+}
+
+
+/* 站内信什么都木有的样式 */
+
+.nothing {
+    padding: 40px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.nothing span {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.my-datatime .weui-cells {
+    font-size: 14px;
+    padding: 3px 15px;
 }

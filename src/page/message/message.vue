@@ -1,9 +1,13 @@
 <template>
     <div class="messagewrap">
-         <Head :title="title" ></Head>
+         <Head :title="title" type="backhd"></Head>
          <!-- Tab -->
-         <div>
-            <tab :line-width=2 active-color='#e6a23c' v-model="index">
+         <div class="nothing" v-if="msglist.length==0">
+              <span>什么都木有哦</span>
+              <span>=￣ω￣=</span>
+         </div>
+         <div v-else>
+            <tab :line-width=2 active-color='@tab-bar-active-color' v-model="index">
                 <tab-item class="vux-center" v-for="(item, index) in tabtit" @on-item-click="demo = index" :key="index">{{item}}</tab-item>
             </tab>
             <div class="my-tab-main">
@@ -23,7 +27,7 @@
                 <div class="tab-swiper vux-center" v-if="demo == 1">
                     <ul class="my-tab-ul">
                         <li v-for="item in noRead" @click="openMsg(item)">
-                            <span><badge></badge>{{item.title}}</span>
+                            <span><badge style="margin-right:5px;" badge-bg-color="#000"></badge>{{item.title}}</span>
                             <div>
                                 <span class="my-tab-time">{{item.s_date}}</span>
                                 <x-icon type="ios-arrow-right" size="15" class="my-tab-icon"></x-icon>
@@ -109,16 +113,10 @@ export default {
   methods: {
     // 显示全部站内信
     showAllMessage(page, rows, status) {
-      this.$vux.loading.show();
       var data = { page: page, rows: rows, status: status };
       this.$http.post("/cms/msg_user_list.do", data).then(e => {
-        this.$vux.loading.hide();
         if (e.data.Status == 200) {
           this.msglist = e.data.Data.msg_list;
-        } else if (e.data.Status == 600) {
-          this.$vux.toast.text("登录失效");
-          window.sessionStorage.clear();
-          this.$router.push("/login");
         }
       });
     },

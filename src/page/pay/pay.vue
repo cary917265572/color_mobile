@@ -1,13 +1,13 @@
 <template>
-    <div class="wrap">
-         <Head :title="title"></Head>
+    <div class="paywrap">
+         <Head title="快速充值" type="backhd"></Head>
          <!-- Tab -->
-        <div>
-            <tab :line-width=2 active-color='#dc700c' v-model="index">
-                <tab-item class="vux-center" v-for="(item, key) in paylist" :key="key">{{item.title}}</tab-item>
+        <div class="paytab">
+            <tab :line-width=2 v-model="tabindex">
+                <tab-item v-for="(item, index) in paylist" :selected='index == tabindex'  :key="index">{{item.title}}</tab-item>
             </tab>
-            <swiper v-model="index" height="470px" :show-dots="false" class="pay-tab-content">
-                <swiper-item v-for="(item, index) in paylist" :key="index">
+            <swiper v-model="tabindex" height="470px" :show-dots="false" class="pay-tab-content">
+                <swiper-item v-for="(item, key) in paylist" :key="key">
                 <div class="tab-swiper vux-center">
                     <!-- hand -->
                     <div v-if="item.cash_type=='hand'">
@@ -75,20 +75,22 @@
                     </div>
                     <!-- 公用部分 -->
                     <div class="pay-base-item" @click="discountPop = true">
-                        <span><i class="pay-discount-icon"></i>优惠申请<em style="margin-left:15px;">{{discountlabel}}</em></span>
+                        <span><i class="pay-discount-icon"></i>请选择优惠<em style="margin-left:15px;">{{discountlabel}}</em></span>
                         <x-icon type="ios-arrow-right" size="15"></x-icon>
                     </div>
                     <div class="h20"></div>
                     <div class="pay-hand-two">
-                         <div class="pay-hand-money">存款金额</div>
+                         <div class="pay-hand-money">请选择或填写存款金额</div>
                          <x-input ref="paymoney" v-model="moneyval" title="￥" :required="true" :placeholder="'存款限额最低'+item.list[0].min_amout+'元，最高'+item.list[0].max_amout+'元'"></x-input>
                     </div>
                     <div class="h20"></div>
                     <div class="pay-hand-three">
-                        <span :class="{'on':isok===index}" v-for="(item,index) in moneylist" @click="getMoney(item,index)">{{item}}</span>
+                        <span v-for="(item,index) in moneylist" @click="getMoney(item)">
+                            <img :src="item.moneyicon" alt="">
+                        </span>
                     </div>
                     <div class="h20"></div>
-                    <div class="pay-go" @click="orderSubmit"><span>下一步</span></div>
+                    <div class="pay-go" @click="orderSubmit"><span>立即充值</span></div>
                 </div>
                 </swiper-item>
             </swiper>
@@ -122,8 +124,7 @@ import Head from "@/components/Head.vue";
 export default {
   data() {
     return {
-      title: "存款",
-      index: 0,
+      tabindex: 0,
       discountlist: [],
       discountPop: false,
       discounttit: "选择优惠",
@@ -132,7 +133,21 @@ export default {
       titlelist: [],
       discountcode: "",
       paylist: [],
-      moneylist: [50, 100, 500, 1000, 1500],
+      moneylist: [
+          {   
+              moneyicon:'../../../static/img/token100.png',
+              moneyvalue:100
+          },{
+              moneyicon:'../../../static/img/token500.png',
+              moneyvalue:500
+          },{
+              moneyicon:'../../../static/img/token1000.png',
+              moneyvalue:1000
+          },{
+              moneyicon:'../../../static/img/token5000.png',
+              moneyvalue:5000
+          },
+      ],
       moneyval: "",
       isok: "",
       payway: 0,
@@ -175,9 +190,8 @@ export default {
       });
     },
     // 获取充值金额
-    getMoney(obj, key) {
-      this.isok = key;
-      this.moneyval = obj;
+    getMoney(obj) {
+      this.moneyval = obj.moneyvalue;
     },
     // 选择银行卡
     choseBank() {
@@ -234,9 +248,8 @@ export default {
               e.data.Data.order_code;
             window.location.href = url;
           }
-        } else if (e.data.Status === 600) {
-          window.sessionStorage.clear();
-          this.$router.push("login");
+        } else{
+          this.$vux.toast.text(e.data.Msg, "middle");
         }
       });
     }
@@ -247,6 +260,6 @@ export default {
 };
 </script>
 
-<style scoped>
-@import url(./pay.css);
+<style scoped lang="less">
+@import url(./pay.less);
 </style>

@@ -1,13 +1,11 @@
-body {}
-
 .messagewrap {
-    padding-top: 1.3rem;
+    padding-top: 62px;
     height: auto;
     background: #f2f2f2;
 }
 
 .my-tab-ul li {
-    height: 0.96rem;
+    height: 1.2rem;
     background: #fff;
     padding: 0 0.45rem;
     border-top: 1px solid #eee;
@@ -41,7 +39,7 @@ body {}
 }
 
 .my-btn {
-    width: 3.4rem;
+    width: 3rem;
     height: 1rem;
     border-radius: 15px;
     text-align: center;
@@ -59,7 +57,7 @@ body {}
 }
 
 .my-dialog {
-    padding: 0.4rem;
+    padding: 1rem;
     color: #000;
     font-size: 0.36rem;
     text-align: left;
